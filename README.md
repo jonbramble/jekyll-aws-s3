@@ -3,7 +3,8 @@
 A simple AWS s3 uploader for Jekyll websites. 
 It uploads files in _site to a specified bucket. 
 
-There are other gems for this task, for me this is a learning exercise. 
+There are other better gems for this task, for me this is a learning exercise. 
+
 see https://github.com/laurilehmijoki/s3_website
  
 
@@ -23,7 +24,13 @@ Or install it yourself as:
 
 ## Usage
 
-Within a Jekyll created directory add the following 
+Within a Jekyll created directory add the following keys: 
+
+access_key_id: 'XXXXX'
+secret_access_key: 'XXXXX'
+region: 'eu-west-1'
+bucket_name: 'bucketname'
+index_file: 'index.html'
 
 ## Contributing
 
