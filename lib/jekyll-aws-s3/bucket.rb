@@ -22,6 +22,7 @@ module Jekylls3
     def upload_file(file_name,file_path)
        # check for age and etag - maybe we dont have to upload that file
        digest = digest(file_path)
+       puts file_path
        # if the object doesn't exist or the etag doesn't match upload
        obj = site_bucket.objects[file_name]
        if (!obj.exists? || digest_not_match(obj,file_path))
