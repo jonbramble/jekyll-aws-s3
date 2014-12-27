@@ -1,10 +1,10 @@
 require 'aws-sdk'
 
 module Jekylls3
-	##
-	# Wrapper around S3 connection
-	#
-	#
+  ##
+  # Wrapper around S3 connection
+  #	
+  #
   class S3Connection
 
    attr_reader :S3
@@ -15,7 +15,7 @@ module Jekylls3
                   region: config["region"] }
      begin
       @S3 = AWS::S3.new(aws_conf)
-    rescue Exception => e
+     rescue Exception => e
       raise e
     end
    end

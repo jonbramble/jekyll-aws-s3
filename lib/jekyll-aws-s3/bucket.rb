@@ -4,8 +4,8 @@ module Jekylls3
 
     attr_accessor :bucket_name
 
-    def initialize(config)
-      @bucket_name = config["bucket_name"]
+    def initialize(bucket_name,config)
+      @bucket_name = bucket_name
       @S3 = Jekylls3::S3Connection.new(config).S3
       raise BucketError, "Bucket #{@bucket_name} not found" unless site_bucket_exists?
     end

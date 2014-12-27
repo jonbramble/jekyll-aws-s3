@@ -1,31 +1,44 @@
 module Jekylls3
 
   # the site is configured through the _config.yml file. 
-  # the site only has one bucket
+  # the site has a bucket and an asset bucket which could be the same
 
   class Site
 
     def initialize
       @config = site_configuration  #load configuration
-      @bucket = Jekylls3::Bucket.new(@config) #create a local bucket object
+      bucket_name = @config["bucket_name"]
+      asset_bucket_name = @config["asset_bucket_name"]
+      @bucket = Jekylls3::Bucket.new(bucket_name,@config) #create a local bucket object
+      @asset_bucket = Jekylls3::Bucket.new(asset_bucket_name,@config)
     end
 
     def bucket_name
       @bucket.bucket_name
     end
 
-    def upload_directory(dir_name)
+    def asset_bucket_name
+      @asset_bucket.bucket_name
+    end
+
+    def upload_directory
       directory = @config["destination"]
+      #must exclude the asset directory here
       @bucket.upload_directory(directory)
     end
 
-    # convenient method for odd files
-    def upload_file(file_name)
-      #@bucket.upload_file
+    def upload_asset_directory
+      directory = @config["destination"]
+      asset_directory = File.join(directory,"assets")
+      @asset_bucket.upload_directory(asset_directory)
     end
 
     def list_uploaded_files
       @bucket.list_uploaded_files
+    end
+
+    def list_uploaded_asset_files
+      @asset_bucket.list_uploaded_files
     end
 
     def test
