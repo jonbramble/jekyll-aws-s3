@@ -24,7 +24,7 @@ Or install it yourself as:
 
 ## Usage
 
-Within a Jekyll created directory add the following keys: 
+Within a Jekyll created directory add the following keys to _config.yml: 
 
 access_key_id: 'XXXXX'
 secret_access_key: 'XXXXX'

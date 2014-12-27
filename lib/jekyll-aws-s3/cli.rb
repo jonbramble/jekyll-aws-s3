@@ -16,7 +16,7 @@ module Jekylls3
     desc "configuration", "displays configuration information"
     def configuration
      site = Jekylls3::Site.new
-     puts "  Bucket name:\t"+site.bucket_name
+     puts "  Bucket name:\t"+ site.bucket_name
      puts 
      puts "  Website Configuration"
      puts site.test.to_yaml

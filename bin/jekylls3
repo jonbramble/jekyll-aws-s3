@@ -4,5 +4,6 @@ Signal.trap("INT") { exit 1 }
 
 $LOAD_PATH << File.expand_path( File.dirname(__FILE__) + '/../lib' )
 
-require 'jekylls3/cli'
+require 'jekyll-aws-s3'
+require 'jekyll-aws-s3/cli'
 Jekylls3::CLI::Site.start(ARGV)
