@@ -8,26 +8,26 @@ module Jekylls3
    desc "files", "upload a file or jekyll website to S3"
    method_option :file, type: :string
    # these options should be used to override the defaults
-   method_option :site_directory, type: :string, :default => '_site'
+   #method_option :site_directory, type: :string, :default => '_site'
    def files
      site = Jekylls3::Site.new
      if options[:file]
        site.upload_file(options[:file])
      else
-       site.upload_directory(options[:site_directory])
+       site.upload_directory
     end
    end
 
    desc "assets", "upload an asset file or jekyll website to S3"
    method_option :file, type: :string
    # these options should be used to override the defaults
-   method_option :site_directory, type: :string, :default => '_site'
+   #method_option :site_directory, type: :string, :default => '_site'
    def assets
      site = Jekylls3::Site.new
      if options[:file]
        site.upload_asset_file(options[:file])
      else
-       site.upload_asset_directory(options[:site_directory])
+       site.upload_asset_directory
     end
    end
 
