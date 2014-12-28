@@ -25,7 +25,8 @@ module Jekylls3
       dir = override_directory
       dir ||= @config["destination"]
       #must exclude the asset directory here if using two buckets
-      @bucket.upload_directory(directory)
+      @bucket.upload_directory(dir)
+      # need to look at jeykll assets configured directories
     end
 
     def upload_asset_directory(override_directory)
@@ -45,6 +46,10 @@ module Jekylls3
 
     def test
       @bucket.website_config.options
+    end
+
+    def accessible_buckets
+      @bucket.all_buckets
     end
 
 private

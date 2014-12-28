@@ -29,9 +29,9 @@ end
 # patch this to supress the output from Jekyll, is there a better way?
 # kernel supress warnings?
 module Jekyll
-  def self.logger
-    @logger ||= Stevenson.new(2)
-  end
+  #def self.logger
+   # @logger ||= Stevenson.new
+  #end
 end
 
 

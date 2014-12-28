@@ -14,7 +14,7 @@ module Jekylls3
      if options[:file]
        site.upload_file(options[:file])
      else
-       site.upload_directory
+       site.upload_directory(nil)
     end
    end
 
@@ -27,8 +27,8 @@ module Jekylls3
      if options[:file]
        site.upload_asset_file(options[:file])
      else
-       site.upload_asset_directory
-    end
+       site.upload_asset_directory(nil)
+     end
    end
 
  end
@@ -71,6 +71,15 @@ module Jekylls3
      files_name = site.list_uploaded_files
      files_name.each do |file_name|
       puts file_name
+    end
+   end
+
+   desc "bucket_list", "list the accessible buckets"
+   def bucket_list
+    site = Jekylls3::Site.new
+    buckets = site.accessible_buckets
+    buckets.each do |bucket|
+     puts bucket.name
     end
    end
 
