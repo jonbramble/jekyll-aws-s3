@@ -22,6 +22,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 0"
   spec.add_development_dependency "rspec", "~> 2.14"
   spec.add_runtime_dependency "aws-sdk", "~> 1.32"
-  spec.add_runtime_dependency "jekyll", "~> 1.4"
+  spec.add_runtime_dependency "jekyll", "~> 2.5"
   spec.add_runtime_dependency "thor", "~> 0.18"
 end
