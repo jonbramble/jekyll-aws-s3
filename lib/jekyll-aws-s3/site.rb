@@ -9,8 +9,8 @@ module Jekylls3
       @config = site_configuration  #load configuration
       bucket_name = @config["bucket_name"]
       asset_bucket_name = @config["asset_bucket_name"]
-      @bucket = Jekylls3::Bucket.new(bucket_name,@config) #create a local bucket object
-      @asset_bucket = Jekylls3::Bucket.new(asset_bucket_name,@config)
+      @bucket = Jekylls3::Bucket.new(bucket_name, @config) #create a local bucket object
+      @asset_bucket = Jekylls3::Bucket.new(asset_bucket_name, @config)
     end
 
     def bucket_name
@@ -21,15 +21,17 @@ module Jekylls3
       @asset_bucket.bucket_name
     end
 
-    def upload_directory
-      directory = @config["destination"]
-      #must exclude the asset directory here
+    def upload_directory(override_directory)
+      dir = override_directory
+      dir ||= @config["destination"]
+      #must exclude the asset directory here if using two buckets
       @bucket.upload_directory(directory)
     end
 
-    def upload_asset_directory
-      directory = @config["destination"]
-      asset_directory = File.join(directory,"assets")
+    def upload_asset_directory(override_directory)
+      dir = override_directory
+      dir ||= @config["destination"]
+      asset_directory = File.join(dir,"assets")
       @asset_bucket.upload_directory(asset_directory)
     end
 

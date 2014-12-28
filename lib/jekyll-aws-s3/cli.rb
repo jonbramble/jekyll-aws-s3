@@ -3,6 +3,35 @@ require 'thor'
 
 module Jekylls3
   module CLI
+  
+  class Upload < Thor
+   desc "files", "upload a file or jekyll website to S3"
+   method_option :file, type: :string
+   # these options should be used to override the defaults
+   method_option :site_directory, type: :string, :default => '_site'
+   def files
+     site = Jekylls3::Site.new
+     if options[:file]
+       site.upload_file(options[:file])
+     else
+       site.upload_directory(options[:site_directory])
+    end
+   end
+
+   desc "assets", "upload an asset file or jekyll website to S3"
+   method_option :file, type: :string
+   # these options should be used to override the defaults
+   method_option :site_directory, type: :string, :default => '_site'
+   def assets
+     site = Jekylls3::Site.new
+     if options[:file]
+       site.upload_asset_file(options[:file])
+     else
+       site.upload_asset_directory(options[:site_directory])
+    end
+   end
+
+ end
 
   class Bucket < Thor
 
@@ -27,28 +56,15 @@ module Jekylls3
  class Site < Thor
 
    register Bucket, :bucket, "bucket", "Bucket Tasks"
+   register Upload, :upload, "upload", "Upload Tasks"
 
    map "ls" => :list   
 
    desc "check", "check a site configuration"
    def check
-     Jekylls3::Site.new
-     # print some checking information
+     Jekylls3::Site.new   # print some checking information
    end
-
-   desc "upload", "upload a file or jekyll website to S3"
-   method_option :file, type: :string
-   # these options should be used to override the defaults
-   method_option :site_directory, type: :string, :default => '_site'
-   def upload
-     site = Jekylls3::Site.new
-     if options[:file]
-       site.upload_file(options[:file])
-     else
-       site.upload_directory(options[:site_directory])
-    end
-   end
-
+ 
    desc "list", "lists uploaded files"
    def list
      site = Jekylls3::Site.new
@@ -59,6 +75,8 @@ module Jekylls3
    end
 
  end
+
+ 
 
 end
 

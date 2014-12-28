@@ -4,7 +4,7 @@ module Jekylls3
 
     attr_accessor :bucket_name
 
-    def initialize(bucket_name,config)
+    def initialize(bucket_name, config)
       @bucket_name = bucket_name
       @S3 = Jekylls3::S3Connection.new(config).S3
       raise BucketError, "Bucket #{@bucket_name} not found" unless site_bucket_exists?
@@ -22,7 +22,6 @@ module Jekylls3
     def upload_file(file_name,file_path)
        # check for age and etag - maybe we dont have to upload that file
        digest = digest(file_path)
-       puts file_path
        # if the object doesn't exist or the etag doesn't match upload
        obj = site_bucket.objects[file_name]
        if (!obj.exists? || digest_not_match(obj,file_path))
@@ -44,15 +43,15 @@ module Jekylls3
     end
 
     def empty_bucket
-      # remove all the files in the bucket
+      # TODO: remove all the files in the bucket
     end
 
     def delete_bucket
-      # remove the site bucket
+      # TODO: remove the site bucket
     end
 
     def copy_bucket
-
+      # TODO: make a copy of the bucket
     end
 
     def website_config
@@ -60,7 +59,7 @@ module Jekylls3
     end
 
     def acl_config
-      #TODO
+      #TODO: configure the website options for the bucket
     end
 
     # all the buckets
